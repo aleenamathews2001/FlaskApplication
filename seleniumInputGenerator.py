@@ -94,7 +94,8 @@ def generateSeleniumInputJSON(rule_JSON):
                 new_parent_condition['Value']=rule_JSON[ruleIdentifier]['Parent Conditions'][parent_condition]['Value']
                 new_parent_condition['Conditional Operator']='AND'
 
-                child_condition_List=rule_JSON[ruleIdentifier]['Child Conditions'][parent_condition]
+                # child_condition_List=rule_JSON[ruleIdentifier]['Child Conditions'][parent_condition]
+                child_condition_List = rule_JSON[ruleIdentifier]['Child Conditions'].get(parent_condition, [])
 
                 new_parent_condition['SubConditions']=[]
                 for child_cond in child_condition_List:
