@@ -1,8 +1,12 @@
 # api_server.py
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import seleniumInputGenerator  # your second code module
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template("home.html")
 
 @app.route('/process-rule-json', methods=['POST'])
 def process_rule_json():
@@ -18,5 +22,6 @@ def process_rule_json():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     app.run(debug=True)
