@@ -104,9 +104,10 @@ def generateSeleniumInputJSON(rule_JSON):
                     new_sub_condition['Sequence']=child_cond['Sequence']
                     new_sub_condition['Type']=child_cond['Type']
                     if(child_cond['Type'] == 'Attribute'):
-                        new_sub_condition['AttributeName']=child_cond['Resource/Field/Attribute']
+                        new_sub_condition['AttributeName']=child_cond['Value']
                     if(child_cond['Type'] == 'Field'):
                         new_sub_condition['Field']=child_cond['Resource/Field/Attribute']
+                    new_sub_condition['AttributeType']=child_cond['Data Type']
                     new_sub_condition['Operator']=child_cond['Operator']
                     new_sub_condition['Value']=child_cond['Value']
                     new_parent_condition['SubConditions'].append(new_sub_condition)
@@ -149,8 +150,10 @@ def generateSeleniumInputJSON(rule_JSON):
                         new_sub_action['Type']=None
                     else:
                         new_sub_action['Type']='Attribute'
-
                     
+                    if(new_sub_action['Type'] == 'Attribute'):
+                        new_sub_action['AttributeName']=sub_action['Attribute']
+                    new_sub_action['AttributeType']=sub_action['Data Type']
                     new_sub_action['Operator']=sub_action['Operator']
                     new_sub_action['Value']=sub_action['Value']
                     new_sub_action['Parent Action Name']=actionName
